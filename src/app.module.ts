@@ -15,7 +15,7 @@ import { ProductsModule } from './modules/products/product.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      //path: `/graphql`, remove comment on development
+      path: `/graphql`,
       debug: false,
       playground: true,
       context: ({ request }) => ({ request }),

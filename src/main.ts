@@ -2,7 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as chalk from 'chalk';
 
-const PORT = 4000;
+//use DEV_PORT on local
+const DEV_PORT = 4000;
+const PROD_PORT = 80;
 
 async function bootstrap() {
   try {
@@ -10,11 +12,11 @@ async function bootstrap() {
       cors: true,
     });
 
-    await app.listen(PORT);
+    await app.listen(PROD_PORT);
     console.log(
       `Yess! 😀 Server is listening on ${chalk
         .hex('#87e8de')
-        .bold(`http://localhost:${PORT!}`)}/graphql`,
+        .bold(`http://localhost:${PROD_PORT!}`)}/graphql`,
     );
   } catch (error) {
     console.error(
