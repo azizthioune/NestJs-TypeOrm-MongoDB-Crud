@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  """Identify element """
+  _id: ID
+
+  """Is deleted"""
+  isDeleted: Boolean!
+
+  """Created at"""
+  createdAt: String!
+
+  """Updated at"""
+  updatedAt: String!
+
+  """Product uid!"""
+  uid: String
+
+  """Name of the product"""
+  name: String
+
+  """Currency of the product"""
+  currency: String
+
+  """Price of the product"""
+  price: Float
+
+  """Image of the product"""
+  image: String
+}
+
+type ProductCreationResponse {
+  countTotal: Int
+  currentPage: Int
+  data: [Product]
+  totalPages: Int
+}
+
+type Query {
+  products(query: ProductsFetchQueries): ProductCreationResponse!
+  product(id: ID!): Product!
+}
+
+input ProductsFetchQueries {
+  limit: Int
+  page: Int
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product!
+  updateProduct(id: ID!, input: UpdateProductInput!): Product!
+  deleteProduct(id: ID!): Product!
+}
+
+input CreateProductInput {
+  """Unique ID for the product"""
+  uid: String!
+
+  """Description of the product"""
+  name: String!
+
+  """Currency of the product"""
+  currency: String
+
+  """Price of the product"""
+  price: Float
+
+  """Image of the product"""
+  image: String
+}
+
+input UpdateProductInput {
+  """Unique ID for the product"""
+  uid: String
+
+  """Description of the product"""
+  name: String
+
+  """Currency of the product"""
+  currency: String
+
+  """Price of the product"""
+  price: Float
+
+  """Image of the product"""
+  image: String
+}
