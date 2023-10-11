@@ -4,7 +4,7 @@ import * as chalk from 'chalk';
 
 //use DEV_PORT on local
 const DEV_PORT = 4000;
-const PROD_PORT = 80;
+const PROD_PORT = 3000;
 
 async function bootstrap() {
   try {
