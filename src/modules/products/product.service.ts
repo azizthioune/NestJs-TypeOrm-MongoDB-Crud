@@ -18,10 +18,11 @@ export class ProductsService extends AbstractService<Product> {
     super(productRepo);
   }
 
-  async products({ limit, page }: ProductsFetchQueries) {
+  async products({ limit, page, offset }: ProductsFetchQueries) {
     return paginate({
       repo: this.repo,
       page,
+      offset,
       limit,
     });
   }

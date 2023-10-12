@@ -18,6 +18,7 @@ interface offsetArgs<T> {
   type?: operationType;
   page?: number;
   limit?: number;
+  offset?: number;
 }
 
 export interface IPaginatedType<T> {
@@ -49,17 +50,21 @@ export async function paginate<T extends BaseSchema>({
   pipeline,
   page = PAGE,
   limit = LIMIT,
+  offset,
   type = operationType.Find,
 }: offsetArgs<T>) {
   let totalPages: number = 0;
   let data: T[] = [];
   let countTotal: number = 0;
   let currentPage: number = 0;
+
+  const SKIP = offset ? offset : (page - 1) * limit;
+
   if (type === operationType.Find) {
     const count = await repo.count(query);
     const docs = await repo.find({
       where: { ...query },
-      skip: (page - 1) * limit,
+      skip: SKIP,
       take: limit,
     });
     totalPages = count ? Math.ceil(count / limit) : 0;
@@ -69,7 +74,7 @@ export async function paginate<T extends BaseSchema>({
   } else {
     const aggreation = repo.aggregate<T>(pipeline);
     const count = (await aggreation.toArray()).length;
-    const docs = aggreation.skip((page - 1) * limit).limit(limit);
+    const docs = aggreation.skip(SKIP).limit(limit);
     totalPages = count ? Math.ceil(count / limit) : 0;
     data = await docs.toArray();
     countTotal = count;

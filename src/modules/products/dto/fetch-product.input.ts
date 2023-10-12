@@ -9,6 +9,9 @@ export class ProductsFetchQueries {
 
   @Field(() => Int, { nullable: true })
   page?: number;
+
+  @Field(() => Int, { nullable: true })
+  offset?: number;
 }
 
 @ObjectType()
