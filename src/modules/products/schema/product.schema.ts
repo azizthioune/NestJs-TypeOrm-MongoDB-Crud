@@ -3,7 +3,11 @@ import { BaseSchema } from 'src/common/schemas';
 import { Column, Entity } from 'typeorm';
 
 @ObjectType()
-@Entity()
+@Entity({
+  orderBy: {
+    createdAt: 'DESC',
+  },
+})
 export default class Product extends BaseSchema {
   @Field({ description: 'Product uid!', nullable: true })
   @Column()
