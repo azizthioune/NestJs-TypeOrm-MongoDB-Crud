@@ -20,7 +20,10 @@ export class ProductsService extends AbstractService<Product> {
 
   async products({ limit, page, offset }: ProductsFetchQueries) {
     return paginate({
-      repo: this.repo,
+      repo: this.productRepo,
+      query: {
+        isDeleted: false,
+      },
       page,
       offset,
       limit,
