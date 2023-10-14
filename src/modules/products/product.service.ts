@@ -27,6 +27,11 @@ export class ProductsService extends AbstractService<Product> {
       },
       pipeline: [
         {
+          $match: {
+            isDeleted: false,
+          },
+        },
+        {
           $sort: { createdAt: -1 },
         },
       ],
