@@ -2,7 +2,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export function ormConfig(): TypeOrmModuleOptions {
   return {
-    url: 'mongodb+srv://simba2022:simba2022@simba.qqlfl.mongodb.net/test',
+    url: process.env.mongoUri,
     type: 'mongodb',
     synchronize: true,
     logging: true,
